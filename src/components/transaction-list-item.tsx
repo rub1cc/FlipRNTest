@@ -1,4 +1,4 @@
-import { Box, Text } from '@/atoms'
+import { Badge, Box, Text } from '@/atoms'
 import { Transaction } from '@/models'
 import { Theme } from '@/themes'
 import {
@@ -21,7 +21,7 @@ const TransactionListItem = ({ onPress, ...rest }: Props) => {
     beneficiary_bank,
     beneficiary_name,
     status,
-    completed_at
+    created_at
   } = rest
 
   const borderColor: ResponsiveValue<keyof Theme['colors'], Theme> =
@@ -47,16 +47,21 @@ const TransactionListItem = ({ onPress, ...rest }: Props) => {
         borderLeftWidth={4}
         borderRadius="xs"
         borderColor={borderColor}
+        flexDirection="row"
+        alignItems="center"
       >
-        <Text fontWeight="bold">
-          {capitalize(sender_bank)} → {capitalize(beneficiary_bank)}
-        </Text>
-        <Text>{beneficiary_name.toUpperCase()}</Text>
-        <Box flex={1} flexDirection="row">
-          <Text>{formatNumberToRupiah(amount)}</Text>
-          <Text mx="xs">•</Text>
-          <Text>{formatDateStringToHumanReadable(completed_at)}</Text>
+        <Box flex={1}>
+          <Text fontWeight="bold">
+            {capitalize(sender_bank)} → {capitalize(beneficiary_bank)}
+          </Text>
+          <Text>{beneficiary_name.toUpperCase()}</Text>
+          <Box flex={1} flexDirection="row">
+            <Text>{formatNumberToRupiah(amount)}</Text>
+            <Text mx="xs">•</Text>
+            <Text>{formatDateStringToHumanReadable(created_at)}</Text>
+          </Box>
         </Box>
+        <Badge variant={status} />
       </Box>
     </Pressable>
   )

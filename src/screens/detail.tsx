@@ -50,12 +50,12 @@ export default function TransactionDetailScreen({ route }: Props) {
 
   return (
     <Box>
-      <Box p="xl" bg="cardBackground" mb="xxs">
+      <Box p="xl" bg="white" mb="xxs">
         <Text fontWeight="bold">ID TRANSAKSI: #{id}</Text>
       </Box>
       <Box
         p="xl"
-        bg="cardBackground"
+        bg="white"
         mb="sm"
         flexDirection="row"
         justifyContent="space-between"
@@ -68,7 +68,7 @@ export default function TransactionDetailScreen({ route }: Props) {
         </TouchableOpacity>
       </Box>
       {expanded && (
-        <Box p="xl" bg="cardBackground">
+        <Box p="xl" bg="white">
           <Text fontWeight="bold">
             {capitalize(sender_bank)} → {capitalize(beneficiary_bank)}
           </Text>

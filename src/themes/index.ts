@@ -19,6 +19,9 @@ const colors = {
   accentPending: palette.orange,
 
   cardBackground: palette.white,
+
+  black: palette.black,
+  white: palette.white,
 }
 
 const spacing = {
@@ -33,7 +36,7 @@ const spacing = {
 
 const borderRadii = {
   none: 0,
-  xs: 4,
+  xs: 8,
   sm: 16,
   md: 24,
   lg: 64

@@ -30,7 +30,7 @@ export default function TransactionListScreen({ navigation }: Props) {
 
   return (
     <Box bg="mainBackground" p="sm">
-      <Box bg="cardBackground" p="md">
+      <Box bg="white" p="md">
         <TextInput placeholder="Cari nama, bank, atau nominal" />
       </Box>
       <TransactionList
