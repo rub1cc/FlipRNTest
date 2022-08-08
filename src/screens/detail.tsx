@@ -7,26 +7,11 @@ import {
   formatDateStringToHumanReadable,
   formatNumberToRupiah
 } from '@/utils/helpers'
-import { TouchableOpacity } from 'react-native'
+import { Image, TouchableOpacity } from 'react-native'
+import { TransactionDetailColumn, TransactionDetailRow } from '@/components'
+import { useClipboard } from '@/hooks'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Detail'>
-
-const DetailColumn = ({ label, value }) => {
-  return (
-    <Box flex={1} width="50%" pr="sm">
-      <Text fontWeight="bold">{label}</Text>
-      <Text>{value}</Text>
-    </Box>
-  )
-}
-
-const DetailRow = ({ children }) => {
-  return (
-    <Box flexDirection="row" justifyContent="space-between" mt="lg">
-      {children}
-    </Box>
-  )
-}
 
 export default function TransactionDetailScreen({ route }: Props) {
   const { transaction } = route.params
@@ -44,14 +29,22 @@ export default function TransactionDetailScreen({ route }: Props) {
     beneficiary_bank
   } = transaction
 
+  const { isCopied, onCopy } = useClipboard(id)
+
   const toggleDetail = useCallback(() => {
     setExapanded(!expanded)
   }, [expanded])
 
   return (
     <Box>
-      <Box p="xl" bg="white" mb="xxs">
-        <Text fontWeight="bold">ID TRANSAKSI: #{id}</Text>
+      <Box p="xl" bg="white" mb="xxs" flexDirection="row" alignItems="center">
+        <Text fontWeight="bold" mr="xs">ID TRANSAKSI: #{id}</Text>
+        <TouchableOpacity onPress={onCopy}>
+          <Box flexDirection="row" alignItems="center">
+            <Image source={require('@/assets/icons/copy.png')} />
+            <Text color="primary" ml="xs">{isCopied && "Tersalin"}</Text>
+          </Box>
+        </TouchableOpacity>
       </Box>
       <Box
         p="xl"
@@ -72,26 +65,26 @@ export default function TransactionDetailScreen({ route }: Props) {
           <Text fontWeight="bold">
             {capitalize(sender_bank)} → {capitalize(beneficiary_bank)}
           </Text>
-          <DetailRow>
-            <DetailColumn
+          <TransactionDetailRow>
+            <TransactionDetailColumn
               label={beneficiary_name.toUpperCase()}
               value={account_number}
             />
-            <DetailColumn
+            <TransactionDetailColumn
               label="NOMINAL"
               value={formatNumberToRupiah(amount)}
             />
-          </DetailRow>
-          <DetailRow>
-            <DetailColumn label="BERITA TRANSFER" value={remark} />
-            <DetailColumn label="KODE UNIK" value={unique_code} />
-          </DetailRow>
-          <DetailRow>
-            <DetailColumn
+          </TransactionDetailRow>
+          <TransactionDetailRow>
+            <TransactionDetailColumn label="BERITA TRANSFER" value={remark} />
+            <TransactionDetailColumn label="KODE UNIK" value={unique_code} />
+          </TransactionDetailRow>
+          <TransactionDetailRow>
+            <TransactionDetailColumn
               label="WAKTU DIBUAT"
               value={formatDateStringToHumanReadable(created_at)}
             />
-          </DetailRow>
+          </TransactionDetailRow>
         </Box>
       )}
     </Box>

@@ -16,10 +16,7 @@ export default function Navigations() {
   return (
     <Stack.Navigator initialRouteName="Transactions">
       <Stack.Screen name="Transactions" component={TransactionListScreen} />
-      <Stack.Screen
-        name="Detail"
-        component={TransactionDetailScreen}
-      />
+      <Stack.Screen name="Detail" component={TransactionDetailScreen} />
     </Stack.Navigator>
   )
 }

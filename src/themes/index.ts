@@ -1,12 +1,14 @@
-import { createTheme } from "@shopify/restyle"
+import { createTheme } from '@shopify/restyle'
 
 const palette = {
   orange: '#f76a37',
   mint: '#47be86',
-  lightGrey: "#f5f9f8",
+  lightGrey: '#f5f9f8',
 
   black: 'black',
   white: 'white',
+
+  blackAlpah50: 'rgba(0, 0, 0, 0.5)'
 }
 
 const colors = {
@@ -22,6 +24,8 @@ const colors = {
 
   black: palette.black,
   white: palette.white,
+
+  modalOverlayBackground: palette.blackAlpah50
 }
 
 const spacing = {
@@ -39,12 +43,13 @@ const borderRadii = {
   xs: 8,
   sm: 16,
   md: 24,
-  lg: 64
+  lg: 64,
+  full: 999
 }
 
 const breakpoints = {
   phone: 0,
-  tablet: 768,
+  tablet: 768
 }
 
 const textVariants = {
@@ -55,7 +60,6 @@ const textVariants = {
   }
 }
 
-
 const theme = createTheme({
   colors,
   spacing,
@@ -65,5 +69,4 @@ const theme = createTheme({
 })
 
 export type Theme = typeof theme
-export default theme;
-
+export default theme

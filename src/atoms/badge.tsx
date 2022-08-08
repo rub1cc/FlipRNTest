@@ -9,12 +9,11 @@ interface Props {
 }
 
 interface BadgeStyle {
-  container: BoxProps<Theme>,
+  container: BoxProps<Theme>
   text: TextProps<Theme>
 }
 
 const Badge: React.FC<Props> = ({ variant }) => {
-
   const baseStyle: BoxProps<Theme> = {
     borderWidth: 2,
     px: 'sm',
@@ -33,28 +32,26 @@ const Badge: React.FC<Props> = ({ variant }) => {
         container: {
           ...baseStyle,
           bg: 'accentSuccess',
-          borderColor: 'accentSuccess',
+          borderColor: 'accentSuccess'
         },
         text: {
           ...baseTextStyle,
-          color: "white"
+          color: 'white'
         }
       },
       PENDING: {
         container: {
           ...baseStyle,
           bg: 'white',
-          borderColor: 'accentPending',
+          borderColor: 'accentPending'
         },
         text: {
           ...baseTextStyle,
-          color: "black"
+          color: 'black'
         }
-
       }
     }[variant]
   }, [variant])
-
 
   const badgeLabel = useMemo(() => {
     switch (variant) {

@@ -21,6 +21,9 @@ const TransactionList: React.FC<Props> = ({ data, onItemPress }) => {
       data={data}
       keyExtractor={item => item.id}
       renderItem={renderItem}
+      contentContainerStyle={{
+        paddingBottom: 80
+      }}
     />
   )
 }

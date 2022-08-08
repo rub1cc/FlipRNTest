@@ -14,3 +14,7 @@ export interface Transaction {
   completed_at: string
   fee: number
 }
+
+export interface TransactionResponse {
+  [id: string]: Transaction
+}
